@@ -13,21 +13,18 @@ def predict():
     form = None
     rating = 0
 
-    if request.method == "POST":
-        form = request.form
-        try:
-            review = form['review']
-            if review == "good":
-                rating = 7
-            else:
-                rating = 1
-            results = {"review": review, "rating": rating}
-        except:
-            errors.append(
-                "Unable to get URL. Please make sure it's valid and try again."
-            )
-    else:
-        errors.append("Form submission not recieved. Please make a POST call to the API with your review.")
+    form = request.form
+    try:
+        review = form['review']
+        if review == "good":
+            rating = 7
+        else:
+            rating = 1
+        results = {"review": review, "rating": rating}
+    except:
+        errors.append(
+            "Unable to get URL. Please make sure it's valid and try again."
+        )
 
     return jsonify({"results": results, "errors": errors, "form": form})
 
