@@ -1,0 +1,11 @@
+**/__pycache__/**
+**/.idea/**
+aws.txt
+*.pkl
+*.csv
+**/*-env/**
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
