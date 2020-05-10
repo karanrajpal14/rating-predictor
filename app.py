@@ -7,26 +7,12 @@ import pickle
 app = Flask(__name__)
 CORS(app)
 
-model_path = "trained_model/model.pkl"
-model_present = False
-model = None
-
-vocab_path = "trained_model/vocab.pkl"
-vocab_present = False
-vocabulary = None
-
-if os.path.isfile(model_path):
-    model_present = True
-    model = pickle.load(open(model_path, "rb"))
-    print("Model present and loaded")
-
-if os.path.isfile(vocab_path):
-    vocab_present = True
-    vocabulary = pickle.load(open(vocab_path, "rb"))
-    print("Vocabulary present and loaded")
-
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
+    return jsonify({"results": "Hellow world!"})
+
+@app.route("/predict", methods=["POST"])
+def predict():
     errors = []
     results = {}
     form = None
