@@ -1,7 +1,5 @@
-from flask import Flask, jsonify, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
-import numpy
-import pandas
 from sklearn.feature_extraction.text import TfidfVectorizer
 import os
 import pickle
@@ -39,10 +37,7 @@ def index():
         vocabulary = pickle.load(open("trained_model/vocab.pkl", "rb"))
         vectorizer = TfidfVectorizer(vocabulary=vocabulary)
         comment = vectorizer.fit_transform([review])
-        if review == "good":
-            rating = 7
-        else:
-            rating = round(model.predict(comment)[0])
+        rating = round(model.predict(comment)[0])    
         results = {"review": review, "rating": rating, "modelLoaded": model_present, "vocabLoaded": vocab_present}
     except Exception as e:
         print(e)
