@@ -4,15 +4,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return jsonify({"project": "Review Rating Predictor", "class": "CSE 5334 002", "course": "Data Mining"})
-
-@app.route("/predict", methods=['GET', 'POST'])
-def predict():
     errors = []
     results = {}
     form = None
     rating = 0
-
     form = request.form
     try:
         review = form['review']
@@ -25,9 +20,7 @@ def predict():
         errors.append(
             "Unable to get URL. Please make sure it's valid and try again."
         )
-
     return jsonify({"results": results, "errors": errors, "form": form})
-
 
 if __name__ == '__main__':
     app.run(debug=True)
