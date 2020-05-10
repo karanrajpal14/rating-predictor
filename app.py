@@ -1,18 +1,17 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
     errors = []
     results = {}
     form = None
     rating = 0
-    form = request.form
     try:
-        review = form['review']
+        review = request.json['review']
         if review == "good":
             rating = 7
         else:
